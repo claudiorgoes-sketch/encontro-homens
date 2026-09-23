@@ -40,15 +40,21 @@ document.getElementById('form').addEventListener('submit',async e=>{
  const f=new FormData(e.target), d=Object.fromEntries(f.entries());
  try {
    if(!ENDPOINT.startsWith('https://script.google.com/')) throw new Error('ENDPOINT não configurado');
-   await fetch(ENDPOINT,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(d)});
-   const text=`CONFIRMAÇÃO — 2º ENCONTRO DE HOMENS\n\nNome: ${d.nome}\nWhatsApp: ${d.whatsapp}\nPresença: ${d.presenca}\nAcompanhado: ${d.acompanhado}\nQuantidade: ${d.qtd||'0'}\nAcompanhantes: ${d.nomes||''}\nChurrasco: ${d.churrasco}\nObservações: ${d.obs||''}`;
-   const url='https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(text);
-   document.getElementById('msg').classList.remove('hide');
-   document.getElementById('msg').innerHTML='✅ <b>Presença registrada!</b><br>Se desejar, clique abaixo para avisar também a organização pelo WhatsApp.<br><br><a href="'+url+'" target="_blank" style="color:#f4b51f;font-weight:bold">ENVIAR PELO WHATSAPP</a>';
-   e.target.reset(); box.classList.add('hide');
- } catch(err) {
-   document.getElementById('msg').classList.remove('hide');
-   document.getElementById('msg').innerHTML='⚠️ Não foi possível registrar automaticamente. Verifique a configuração do formulário.';
- } finally { btn.disabled=false; btn.textContent='CONFIRMAR PRESENÇA'; }
+  const params = new URLSearchParams({
+  nome: d.nome,
+  whatsapp: d.whatsapp,
+  presenca: d.presenca,
+  acompanhado: d.acompanhado,
+  qtd: d.qtd || '0',
+  nomes: d.nomes || '',
+  churrasco: d.churrasco,
+  obs: d.obs || ''
 });
-</script></body></html>
+
+const urlRegistro =
+  ENDPOINT + '?' + params.toString();
+
+fetch(urlRegistro, {
+  method: 'GET',
+  mode: 'no-cors'
+});
