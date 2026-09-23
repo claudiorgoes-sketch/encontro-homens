@@ -1,8 +1,150 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Confirmação de Presença — 2º Encontro de Homens</title><style>
-body{margin:0;background:#071018;color:#fff;font-family:Arial,sans-serif}.wrap{max-width:720px;margin:auto;padding:20px}.card{background:#101b24;border:2px solid #f4b51f;border-radius:18px;padding:24px}h1{color:#f4b51f;text-align:center}h2{text-align:center}.info{text-align:center;line-height:1.7}label{display:block;font-weight:bold;margin:15px 0 7px}input,select,textarea{width:100%;box-sizing:border-box;padding:13px;border-radius:9px;font-size:16px}button{width:100%;padding:15px;margin-top:20px;border:0;border-radius:10px;background:#f4b51f;font-weight:bold;font-size:18px}.hide{display:none}.ok{margin-top:20px;padding:16px;background:#174a27;border-radius:10px}a{color:#f4b51f;font-weight:bold}</style></head><body><div class="wrap"><div class="card">
-<h1>2º ENCONTRO DE HOMENS</h1><h2>“AJA E REAJA COMO UM SACERDOTE”</h2><div class="info">📅 <b>14 de novembro de 2026</b><br>🕓 <b>16:00 hs</b><br>📍 <b>Rua Olívio Boa, 797 — Igreja Evangélica do Povo de Deus</b><br><br>Confirme sua presença até <b>05/11/2026</b>.</div>
-<form id="f"><label>Nome completo *</label><input name="nome" required><label>WhatsApp *</label><input name="whatsapp" required placeholder="(11) 99999-9999"><label>Você confirma sua presença? *</label><select name="presenca" required><option value="">Selecione</option><option>Sim, estarei presente</option><option>Não poderei participar</option></select><label>Você irá acompanhado? *</label><select name="acompanhado" id="ac" required><option value="">Selecione</option><option>Não, vou sozinho</option><option>Sim</option></select><div id="acbox" class="hide"><label>Quantidade de acompanhantes</label><input name="qtd" type="number" min="1"><label>Nome dos acompanhantes</label><textarea name="nomes" rows="3"></textarea></div><label>Participará do churrasco/confraternização? *</label><select name="churrasco" required><option value="">Selecione</option><option>Sim</option><option>Não</option></select><label>Observações</label><textarea name="obs" rows="3"></textarea><button id="b">CONFIRMAR PRESENÇA</button></form><div id="m" class="hide"></div></div></div>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2º Encontro de Homens — Confirmação</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#071018;color:#fff;font-family:Arial,Helvetica,sans-serif}
+.container{max-width:720px;margin:0 auto;padding:22px}
+.card{background:#101b24;border:2px solid #f4b51f;border-radius:18px;padding:24px;box-shadow:0 8px 30px #0008}
+h1{margin:0;text-align:center;color:#f4b51f;font-size:30px}
+h2{margin:8px 0 22px;text-align:center;font-size:21px}
+.info{text-align:center;line-height:1.7;margin-bottom:24px}
+label{display:block;font-weight:700;margin:16px 0 7px}
+input,select,textarea{display:block;width:100%;padding:13px;border:1px solid #999;border-radius:10px;background:#fff;color:#111;font-size:16px}
+textarea{resize:vertical}
+button{width:100%;margin-top:22px;padding:16px;border:0;border-radius:11px;background:#f4b51f;color:#111;font-size:18px;font-weight:800;cursor:pointer}
+button:disabled{opacity:.65}
+.hide{display:none}
+.success{margin-top:20px;padding:18px;border-radius:11px;background:#174a27;line-height:1.6}
+.success a{color:#f4b51f;font-weight:800}
+.note{font-size:13px;text-align:center;opacity:.8;margin-top:14px}
+iframe{display:none}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="card">
+<h1>2º ENCONTRO DE HOMENS</h1>
+<h2>“AJA E REAJA COMO UM SACERDOTE”</h2>
+
+<div class="info">
+📅 <b>14 de novembro de 2026</b><br>
+🕓 <b>16:00 hs</b><br>
+📍 <b>Rua Olívio Boa, 797 — Igreja Evangélica do Povo de Deus</b><br><br>
+Confirme sua presença até <b>05/11/2026</b>.
+</div>
+
+<form id="form"
+      action="https://script.google.com/macros/s/AKfycbyiFLcsauWQF67RlZd6sYLIqJAmSiurnCZOdvLDYqRnbMIYVCn9flptebO3Hk8JsFzi/exec"
+      method="GET"
+      target="envio">
+
+<label>Nome completo *</label>
+<input type="text" name="nome" required>
+
+<label>WhatsApp *</label>
+<input type="tel" name="whatsapp" placeholder="(11) 99999-9999" required>
+
+<label>Você confirma sua presença? *</label>
+<select name="presenca" required>
+<option value="">Selecione</option>
+<option>Sim, estarei presente</option>
+<option>Não poderei participar</option>
+</select>
+
+<label>Você irá acompanhado? *</label>
+<select name="acompanhado" id="acompanhado" required>
+<option value="">Selecione</option>
+<option>Não, vou sozinho</option>
+<option>Sim</option>
+</select>
+
+<div id="dadosAcompanhante" class="hide">
+<label>Quantidade de acompanhantes</label>
+<input type="number" name="qtd" min="1">
+
+<label>Nome dos acompanhantes</label>
+<textarea name="nomes" rows="3"></textarea>
+</div>
+
+<label>Participará do churrasco/confraternização? *</label>
+<select name="churrasco" required>
+<option value="">Selecione</option>
+<option>Sim</option>
+<option>Não</option>
+</select>
+
+<label>Observações</label>
+<textarea name="obs" rows="4"></textarea>
+
+<button id="btn" type="submit">CONFIRMAR PRESENÇA</button>
+</form>
+
+<iframe name="envio" id="envio"></iframe>
+
+<div id="sucesso" class="success hide"></div>
+<div class="note">Seus dados serão utilizados para organização do evento.</div>
+
+</div>
+</div>
+
 <script>
-const ENDPOINT="https://script.google.com/macros/s/AKfycbyiFLcsauWQF67RlZd6sYLIqJAmSiurnCZOdvLDYqRnbMIYVCn9flptebO3Hk8JsFzi/exec",WA="5511973850139";const ac=document.getElementById("ac"),box=document.getElementById("acbox");ac.onchange=()=>box.classList.toggle("hide",ac.value!=="Sim");
-document.getElementById("f").onsubmit=function(e){e.preventDefault();const d=Object.fromEntries(new FormData(this).entries()),p=new URLSearchParams(d),img=new Image(),b=document.getElementById("b");b.disabled=true;b.textContent="REGISTRANDO...";img.src=ENDPOINT+"?"+p.toString();setTimeout(()=>{const msg="CONFIRMAÇÃO — 2º ENCONTRO DE HOMENS\n\nNome: "+d.nome+"\nWhatsApp: "+d.whatsapp+"\nPresença: "+d.presenca+"\nAcompanhado: "+d.acompanhado+"\nQuantidade: "+(d.qtd||"0")+"\nAcompanhantes: "+(d.nomes||"")+"\nChurrasco: "+d.churrasco+"\nObservações: "+(d.obs||"");const wa="https://wa.me/"+WA+"?text="+encodeURIComponent(msg);const m=document.getElementById("m");m.className="ok";m.innerHTML="✅ <b>Presença registrada com sucesso!</b><br><br>Obrigado pela confirmação.<br><br><a target='_blank' href='"+wa+"'>📲 ENVIAR CONFIRMAÇÃO PELO WHATSAPP</a>";document.getElementById("f").reset();box.classList.add("hide");b.disabled=false;b.textContent="CONFIRMAR PRESENÇA"},1000)};
-</script></body></html>
+const form = document.getElementById("form");
+const acompanhante = document.getElementById("acompanhado");
+const dadosAcompanhante = document.getElementById("dadosAcompanhante");
+const botao = document.getElementById("btn");
+const sucesso = document.getElementById("sucesso");
+
+acompanhante.addEventListener("change", function() {
+    dadosAcompanhante.classList.toggle("hide", this.value !== "Sim");
+});
+
+form.addEventListener("submit", function() {
+    const dados = new FormData(form);
+    const nome = dados.get("nome");
+    const whatsapp = dados.get("whatsapp");
+    const presenca = dados.get("presenca");
+    const acompanhado = dados.get("acompanhado");
+    const qtd = dados.get("qtd") || "0";
+    const nomes = dados.get("nomes") || "";
+    const churrasco = dados.get("churrasco");
+    const obs = dados.get("obs") || "";
+
+    const texto =
+        "CONFIRMAÇÃO — 2º ENCONTRO DE HOMENS\n\n" +
+        "Nome: " + nome + "\n" +
+        "WhatsApp: " + whatsapp + "\n" +
+        "Presença: " + presenca + "\n" +
+        "Acompanhado: " + acompanhado + "\n" +
+        "Quantidade: " + qtd + "\n" +
+        "Acompanhantes: " + nomes + "\n" +
+        "Churrasco: " + churrasco + "\n" +
+        "Observações: " + obs;
+
+    const linkWhatsApp =
+        "https://wa.me/5511973850139?text=" +
+        encodeURIComponent(texto);
+
+    botao.disabled = true;
+    botao.textContent = "REGISTRANDO...";
+
+    setTimeout(function() {
+        sucesso.innerHTML =
+            "✅ <b>Presença registrada com sucesso!</b><br><br>" +
+            "Obrigado pela confirmação.<br><br>" +
+            "<a href='" + linkWhatsApp + "' target='_blank'>" +
+            "📲 ENVIAR CONFIRMAÇÃO PELO WHATSAPP</a>";
+
+        sucesso.classList.remove("hide");
+        botao.disabled = false;
+        botao.textContent = "CONFIRMAR PRESENÇA";
+        form.reset();
+        dadosAcompanhante.classList.add("hide");
+    }, 1200);
+});
+</script>
+</body>
+</html>
